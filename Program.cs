@@ -14,11 +14,11 @@ namespace OPNT
         static async Task Main(string[] args)
         {
             //utworzenie nadawcy i połączenie sie z serwerem 
-            var nadawca = new SmtpSender(() => new SmtpClient("smtp.gmail.com")
+            var nadawca = new SmtpSender(() => new SmtpClient("smtp klient")
             {
                 UseDefaultCredentials = false,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("casper002.kk@gmail.com", "uqvisvrwllonpwyz"),
+                Credentials = new NetworkCredential("mail", "haslo"),
                 //DeliveryMethod = SmtpDeliveryMethod.Network,
                 Port = 587
             });
@@ -37,8 +37,8 @@ namespace OPNT
 
             //wysyłka maila
             var email = await Email
-                .From("casper002.kk@gmail.com", "UM Wodzisław Śląski")
-                .To("rkolaczkowski@op.pl")
+                .From("mail_nadawcy", "nazwa")
+                .To("odbiorca")
                 .Subject("Powiadomienie Urząd Miasta")
                 .UsingTemplate(wzor.ToString(), new { Tytul = "Mieszkańcu" })
                 //.Body("Czeka na ciebie faktura za węgiel")
